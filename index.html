@@ -15,7 +15,6 @@
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-
         :root {
             --disco-red: #FF0000;
             --disco-green: #00FF00;
@@ -27,7 +26,6 @@
             --black: #000000;
             --glow: #FFD700;
         }
-
         body {
             font-family: 'Poppins', sans-serif;
             background: var(--white);
@@ -38,20 +36,17 @@
             touch-action: pan-y;
             animation: body-flicker 0.5s infinite, screen-shake 0.5s infinite;
         }
-
         @keyframes body-flicker {
             0% { filter: brightness(1) saturate(1); }
             50% { filter: brightness(1.12) saturate(1.3); }
             100% { filter: brightness(1) saturate(1); }
         }
-
         @keyframes screen-shake {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
             25% { transform: translate(3px, -3px) rotate(0.8deg); }
             50% { transform: translate(-3px, 3px) rotate(-0.8deg); }
             75% { transform: translate(3px, 2px) rotate(0.8deg); }
         }
-
         /* Disco Floor Background - 120 BPM Pulse */
         .disco-floor {
             position: fixed;
@@ -60,32 +55,29 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background: linear-gradient(135deg, 
-                var(--disco-red) 0%, 
-                var(--disco-purple) 25%, 
-                var(--disco-blue) 50%, 
-                var(--disco-green) 75%, 
+            background: linear-gradient(135deg,
+                var(--disco-red) 0%,
+                var(--disco-purple) 25%,
+                var(--disco-blue) 50%,
+                var(--disco-green) 75%,
                 var(--disco-pink) 100%);
             opacity: 0.2;
             animation: disco-bg-pulse 0.5s ease-in-out infinite, disco-color-shift 4s linear infinite;
         }
-
         @keyframes disco-bg-pulse {
-            0%, 100% { 
+            0%, 100% {
                 transform: scale(1);
                 opacity: 0.2;
             }
-            50% { 
+            50% {
                 transform: scale(1.02);
                 opacity: 0.3;
             }
         }
-
         @keyframes disco-color-shift {
             0% { filter: hue-rotate(0deg); }
             100% { filter: hue-rotate(360deg); }
         }
-
         /* Disco Lights - 120 BPM Movement */
         .disco-lights {
             position: fixed;
@@ -98,12 +90,10 @@
             overflow: hidden;
             animation: rotate-lights 5s linear infinite;
         }
-
         @keyframes rotate-lights {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         .light-beam {
             position: absolute;
             width: 120px;
@@ -113,7 +103,6 @@
             box-shadow: 0 0 150px 60px currentColor;
             opacity: 0.5;
         }
-
         @media (max-width: 768px) {
             .light-beam {
                 width: 80px;
@@ -122,7 +111,6 @@
                 opacity: 0.4;
             }
         }
-
         .light-beam:nth-child(1) { top: 10%; left: 10%; background: var(--disco-red); animation-delay: 0s; }
         .light-beam:nth-child(2) { top: 20%; left: 40%; background: var(--disco-green); animation-delay: 0.0625s; }
         .light-beam:nth-child(3) { top: 30%; left: 70%; background: var(--disco-blue); animation-delay: 0.125s; }
@@ -131,18 +119,16 @@
         .light-beam:nth-child(6) { top: 40%; left: 50%; background: var(--disco-yellow); animation-delay: 0.3125s; }
         .light-beam:nth-child(7) { top: 80%; left: 30%; background: var(--disco-red); animation-delay: 0.375s; }
         .light-beam:nth-child(8) { top: 50%; left: 90%; background: var(--disco-green); animation-delay: 0.4375s; }
-
         @keyframes beam-flash-bpm {
-            0%, 100% { 
-                opacity: 0.2; 
-                transform: scale(1); 
+            0%, 100% {
+                opacity: 0.2;
+                transform: scale(1);
             }
-            50% { 
-                opacity: 0.8; 
-                transform: scale(1.3); 
+            50% {
+                opacity: 0.8;
+                transform: scale(1.3);
             }
         }
-
         /* Header */
         header {
             position: fixed;
@@ -156,27 +142,23 @@
             box-shadow: 0 0 20px var(--glow);
             text-align: center;
         }
-
         .header-content {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0.5rem;
         }
-
         .header-title {
             font-family: 'Permanent Marker', cursive;
             font-size: 2.5rem;
             color: var(--glow);
             text-shadow: 0 0 10px var(--glow);
         }
-
         .header-ca {
             font-size: 1.2rem;
             color: var(--white);
             font-weight: 600;
         }
-
         /* Hero Section */
         .hero {
             position: relative;
@@ -189,12 +171,10 @@
             text-align: center;
             min-height: auto;
         }
-
         .hero-content {
             max-width: 1000px;
             width: 100%;
         }
-
         h1 {
             font-family: 'Permanent Marker', cursive;
             font-size: clamp(4rem, 10vw, 8rem);
@@ -202,18 +182,15 @@
             text-shadow: 0 0 20px var(--glow), 0 0 40px var(--disco-pink);
             margin-bottom: 1rem;
         }
-
         @media (prefers-reduced-motion: no-preference) {
             h1 {
                 animation: subtle-hue 5s linear infinite;
             }
         }
-
         @keyframes subtle-hue {
             0% { filter: hue-rotate(0deg); }
             100% { filter: hue-rotate(360deg); }
         }
-
         .cta-container {
             display: flex;
             gap: 1.5rem;
@@ -221,7 +198,6 @@
             flex-wrap: wrap;
             margin-bottom: 2rem;
         }
-
         .btn {
             padding: 1rem 2.5rem;
             border-radius: 50px;
@@ -233,29 +209,24 @@
             overflow: hidden;
             z-index: 1;
         }
-
         .btn-primary {
             background: linear-gradient(45deg, var(--disco-purple), var(--disco-pink));
             color: var(--white);
             border: 3px solid var(--glow);
         }
-
         .btn-primary:hover {
             transform: scale(1.1);
             box-shadow: 0 0 30px var(--glow);
         }
-
         .btn-secondary {
             background: linear-gradient(45deg, var(--disco-blue), var(--disco-green));
             color: var(--white);
             border: 3px solid var(--glow);
         }
-
         .btn-secondary:hover {
             transform: scale(1.1);
             box-shadow: 0 0 30px var(--glow);
         }
-
         /* Video Pair Section */
         .video-pair {
             position: relative;
@@ -266,7 +237,6 @@
             gap: 2rem;
             flex-wrap: wrap;
         }
-
         .video-container {
             width: calc(50% - 1rem);
             max-width: 400px;
@@ -274,15 +244,23 @@
             overflow: hidden;
             border: 4px solid var(--glow);
             box-shadow: 0 0 40px var(--glow);
+            position: relative;
         }
-
         .video-container video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
-
+        @media (prefers-reduced-motion: no-preference) {
+            .video-container video {
+                animation: fade-in 0.5s ease-in;
+            }
+        }
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
         /* Groove Section (Disco Stats) */
         .groove {
             position: relative;
@@ -294,31 +272,26 @@
             border-radius: 30px;
             box-shadow: 0 0 50px var(--disco-purple);
         }
-
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
         }
-
         .section-title {
             font-family: 'Permanent Marker', cursive;
             font-size: clamp(3rem, 5vw, 4rem);
             color: var(--glow);
             text-shadow: 0 0 15px var(--disco-red), 0 0 30px var(--disco-pink);
         }
-
         @media (prefers-reduced-motion: no-preference) {
             .section-title {
                 animation: subtle-hue 5s linear infinite;
             }
         }
-
         .section-subtitle {
             font-size: 1.3rem;
             color: var(--white);
             text-shadow: 0 0 10px var(--disco-blue);
         }
-
         .groove-list {
             display: flex;
             flex-direction: column;
@@ -326,7 +299,6 @@
             max-width: 800px;
             margin: 0 auto;
         }
-
         .groove-item {
             background: rgba(255, 255, 255, 0.15);
             padding: 1.5rem;
@@ -337,45 +309,37 @@
             gap: 1.5rem;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-
         .groove-item:hover {
             transform: scale(1.05);
             box-shadow: 0 0 30px var(--glow);
         }
-
         .groove-icon {
             font-size: 3rem;
             color: var(--glow);
         }
-
         @media (prefers-reduced-motion: no-preference) {
             .groove-icon {
                 animation: spin-icon 3s linear infinite;
             }
         }
-
         @keyframes spin-icon {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         .groove-info {
             flex: 1;
         }
-
         .groove-title {
             font-size: 1.4rem;
             font-weight: 900;
             color: var(--disco-yellow);
             margin-bottom: 0.5rem;
         }
-
         .groove-description {
             font-size: 1rem;
             color: var(--white);
             line-height: 1.5;
         }
-
         /* Partnerships Section */
         .partnerships-section {
             position: relative;
@@ -385,12 +349,10 @@
             color: var(--white);
             text-align: center;
         }
-
         .partnerships-container {
             max-width: 900px;
             margin: 0 auto;
         }
-
         .partnerships-content {
             background: rgba(0, 0, 0, 0.3);
             padding: 2rem;
@@ -399,7 +361,6 @@
             font-size: 1.5rem;
             font-weight: 700;
         }
-
         /* Party Section (Join the Groove) */
         .party-section {
             position: relative;
@@ -409,7 +370,6 @@
             margin: 0 auto;
             text-align: center;
         }
-
         .party-grid {
             display: flex;
             justify-content: center;
@@ -417,7 +377,6 @@
             flex-wrap: wrap;
             margin-top: 2rem;
         }
-
         .party-card {
             background: linear-gradient(45deg, var(--disco-red), var(--disco-yellow));
             padding: 1.5rem 2.5rem;
@@ -432,16 +391,13 @@
             transition: all 0.3s;
             box-shadow: 0 0 20px var(--glow);
         }
-
         .party-card:hover {
             transform: rotate(5deg) scale(1.1);
             box-shadow: 0 0 40px var(--disco-pink);
         }
-
         .party-icon {
             font-size: 1.5rem;
         }
-
         /* Footer */
         footer {
             position: relative;
@@ -452,160 +408,125 @@
             color: var(--white);
             border-top: 4px solid var(--glow);
         }
-
         .footer-content p {
             font-weight: 600;
         }
-
         /* Mobile Responsive */
         @media (max-width: 768px) {
             header {
                 padding: 0.75rem 1rem;
             }
-
             .header-title {
                 font-size: 1.8rem;
             }
-
             .header-ca {
                 font-size: 0.9rem;
             }
-
             .hero {
                 padding: 6rem 1rem 0;
             }
-
             h1 {
                 font-size: clamp(2.5rem, 12vw, 4rem);
             }
-
             .cta-container {
                 flex-direction: column;
                 gap: 1rem;
             }
-
             .btn {
                 width: 100%;
                 text-align: center;
                 font-size: 1rem;
                 padding: 0.9rem 2rem;
             }
-
             .video-pair {
                 flex-direction: column;
                 padding: 1.5rem 1rem;
                 gap: 1.5rem;
             }
-
             .video-container {
                 width: 100%;
                 height: 500px;
             }
-
             .groove {
                 padding: 2.5rem 1.5rem;
                 margin: 1rem;
                 border-radius: 20px;
             }
-
             .section-title {
                 font-size: clamp(2rem, 8vw, 3rem);
             }
-
             .section-subtitle {
                 font-size: 1.1rem;
             }
-
             .groove-list {
                 gap: 1.5rem;
             }
-
             .groove-item {
                 padding: 1.2rem;
                 gap: 1rem;
             }
-
             .groove-icon {
                 font-size: 2.2rem;
             }
-
             .groove-title {
                 font-size: 1.2rem;
             }
-
             .groove-description {
                 font-size: 0.9rem;
             }
-
             .partnerships-section {
                 padding: 3rem 1.5rem;
             }
-
             .partnerships-content {
                 padding: 1.5rem;
                 font-size: 1.2rem;
             }
-
             .party-section {
                 padding: 3rem 1.5rem;
             }
-
             .party-grid {
                 flex-direction: column;
                 gap: 1.5rem;
             }
-
             .party-card {
                 font-size: 1rem;
                 padding: 1.2rem 2rem;
             }
-
             .party-icon {
                 font-size: 1.3rem;
             }
-
             footer {
                 padding: 2rem 1.5rem;
             }
-
             .footer-content p {
                 font-size: 0.9rem;
             }
         }
-
         @media (max-width: 480px) {
             .header-title {
                 font-size: 1.5rem;
             }
-
             .header-ca {
                 font-size: 0.8rem;
             }
-
             .video-container {
                 height: 400px;
             }
-
             .groove-icon {
                 font-size: 2rem;
             }
-
             .groove-title {
                 font-size: 1.1rem;
             }
-
             .groove-description {
                 font-size: 0.85rem;
             }
-
             .section-subtitle {
                 font-size: 1rem;
             }
-
             .partnerships-content {
                 font-size: 1.1rem;
             }
-
             .party-card {
                 font-size: 0.95rem;
                 padding: 1rem 1.5rem;
@@ -625,14 +546,12 @@
         <div class="light-beam"></div>
         <div class="light-beam"></div>
     </div>
-
     <header>
         <div class="header-content">
             <span class="header-title">$SANTWERK</span>
             <span class="header-ca">CA: SOON</span>
         </div>
     </header>
-
     <section class="hero">
         <div class="hero-content">
             <h1>$SANTWERK</h1>
@@ -647,15 +566,14 @@
             </div>
         </div>
     </section>
-
     <div class="video-pair">
         <div class="video-container">
-            <video autoplay loop  playsinline poster="banner-poster.jpg">
-                <source src="1.mp4" type="video/mp4">
+            <video autoplay loop muted playsinline preload="auto" poster="banner-poster.jpg">
+                <source src="main.mp4" type="video/mp4">
+                Your browser doesn't support video. <a href="main.mp4">Download it here</a>.
             </video>
         </div>
     </div>
-
     <section class="groove" id="groove">
         <div class="section-header">
             <h2 class="section-title">Disco Stats</h2>
@@ -706,7 +624,6 @@
             </div>
         </div>
     </section>
-
     <section class="partnerships-section" id="partnerships">
         <div class="partnerships-container">
             <div class="section-header">
@@ -717,7 +634,6 @@
             </div>
         </div>
     </section>
-
     <section class="party-section" id="party">
         <div class="section-header">
             <h2 class="section-title">Join the Groove</h2>
@@ -738,12 +654,19 @@
             </a>
         </div>
     </section>
-
     <footer>
         <div class="footer-content">
             <p>&copy; 2025 $SANTWERK. Disco Santa Meme on Solana.</p>
             <p style="margin-top: 0.5rem; font-size: 0.875rem;">Dance wisely. DYOR. Not advice. 🪩⚡</p>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.play().catch(e => console.log('Autoplay blocked:', e));
+            });
+        });
+    </script>
 </body>
 </html>
