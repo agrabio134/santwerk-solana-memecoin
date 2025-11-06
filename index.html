@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="$SANTWERK - The ultimate disco Santa meme coin on Solana. Groove to the beat, ho-ho-disco!">
+    <title>$SANTWERK - Disco Christmas Vibes</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --disco-red: #FF0000;
+            --disco-green: #00FF00;
+            --disco-blue: #0000FF;
+            --disco-yellow: #FFFF00;
+            --disco-purple: #800080;
+            --disco-pink: #FF69B4;
+            --white: #FFFFFF;
+            --black: #000000;
+            --glow: #FFD700;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+            animation: disco-flicker 1s infinite alternate;
+        }
+
+        @keyframes disco-flicker {
+            0% { filter: brightness(1) hue-rotate(0deg); }
+            100% { filter: brightness(1.1) hue-rotate(180deg); }
+        }
+
+        /* Disco Floor Background */
+        .disco-floor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: repeating-conic-gradient(
+                var(--disco-red) 0% 5%, var(--disco-green) 5% 10%,
+                var(--disco-blue) 10% 15%, var(--disco-yellow) 15% 20%,
+                var(--disco-purple) 20% 25%, var(--disco-pink) 25% 30%,
+                var(--disco-red) 30% 35%
+            );
+            animation: spin-floor 20s linear infinite;
+            opacity: 0.2;
+        }
+
+        @keyframes spin-floor {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Intense Disco Lights */
+        .disco-lights {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+            animation: rotate-lights 30s linear infinite;
+        }
+
+        @keyframes rotate-lights {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .light-beam {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            animation: beam-flash 2s ease-in-out infinite;
+            box-shadow: 0 0 300px 100px currentColor;
+            opacity: 0.8;
+        }
+
+        .light-beam:nth-child(1) { top: 5%; left: 10%; background: var(--disco-red); animation-delay: 0.1s; }
+        .light-beam:nth-child(2) { top: 15%; left: 30%; background: var(--disco-green); animation-delay: 0.2s; }
+        .light-beam:nth-child(3) { top: 25%; left: 50%; background: var(--disco-blue); animation-delay: 0.3s; }
+        .light-beam:nth-child(4) { top: 35%; left: 70%; background: var(--disco-yellow); animation-delay: 0.4s; }
+        .light-beam:nth-child(5) { top: 45%; left: 90%; background: var(--disco-purple); animation-delay: 0.5s; }
+        .light-beam:nth-child(6) { top: 55%; left: 20%; background: var(--disco-pink); animation-delay: 0.6s; }
+        .light-beam:nth-child(7) { top: 65%; left: 40%; background: var(--disco-red); animation-delay: 0.7s; }
+        .light-beam:nth-child(8) { top: 75%; left: 60%; background: var(--disco-green); animation-delay: 0.8s; }
+        .light-beam:nth-child(9) { top: 85%; left: 80%; background: var(--disco-blue); animation-delay: 0.9s; }
+        .light-beam:nth-child(10) { top: 95%; left: 0%; background: var(--disco-yellow); animation-delay: 1s; }
+        .light-beam:nth-child(11) { top: 10%; left: 50%; background: var(--disco-pink); animation-delay: 0.3s; }
+        .light-beam:nth-child(12) { top: 20%; left: 80%; background: var(--disco-purple); animation-delay: 0.5s; }
+        .light-beam:nth-child(13) { top: 30%; left: 20%; background: var(--disco-green); animation-delay: 0.7s; }
+        .light-beam:nth-child(14) { top: 40%; left: 60%; background: var(--disco-blue); animation-delay: 0.9s; }
+        .light-beam:nth-child(15) { top: 50%; left: 40%; background: var(--disco-yellow); animation-delay: 1.1s; }
+
+        @keyframes beam-flash {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 3px solid var(--glow);
+            box-shadow: 0 0 20px var(--glow);
+            text-align: center;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2.5rem;
+            color: var(--glow);
+            text-shadow: 0 0 10px var(--glow);
+        }
+
+        .header-ca {
+            font-size: 1.2rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 8rem 2rem 0;
+            z-index: 10;
+            text-align: center;
+            min-height: auto;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(4rem, 10vw, 8rem);
+            color: var(--black);
+            text-shadow: 0 0 20px var(--glow), 0 0 40px var(--disco-pink);
+            margin-bottom: 1rem;
+            animation: hue-shift 3s linear infinite;
+        }
+
+        @keyframes hue-shift {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .cta-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--disco-purple), var(--disco-pink));
+            color: var(--white);
+            border: 3px solid var(--glow);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px var(--glow);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, var(--disco-blue), var(--disco-green));
+            color: var(--white);
+            border: 3px solid var(--glow);
+        }
+
+        .btn-secondary:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px var(--glow);
+        }
+
+        /* Video Pair Section */
+        .video-pair {
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .video-container {
+            width: calc(50% - 1rem);
+            max-width: 400px;
+            height: 600px;
+            overflow: hidden;
+            border: 4px solid var(--glow);
+            box-shadow: 0 0 40px var(--glow);
+            animation: pulse-media 2s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .video-container {
+                width: 100%;
+                height: 500px;
+            }
+        }
+
+        @keyframes pulse-media {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Revised Groove Section (Disco Stats) */
+        .groove {
+            position: relative;
+            z-index: 10;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+            border-radius: 30px;
+            box-shadow: 0 0 50px var(--disco-purple);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(3rem, 5vw, 4rem);
+            color: var(--glow);
+            text-shadow: 0 0 15px var(--disco-red), 0 0 30px var(--disco-pink);
+            animation: hue-shift 5s linear infinite;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--white);
+            text-shadow: 0 0 10px var(--disco-blue);
+        }
+
+        .groove-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .groove-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 2px dashed var(--glow);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: item-pulse 2s infinite alternate;
+        }
+
+        @keyframes item-pulse {
+            0% { box-shadow: 0 0 10px var(--disco-green); }
+            100% { box-shadow: 0 0 20px var(--disco-pink); }
+        }
+
+        .groove-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--glow);
+        }
+
+        .groove-icon {
+            font-size: 3rem;
+            color: var(--glow);
+            animation: spin-icon 3s linear infinite;
+        }
+
+        @keyframes spin-icon {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .groove-info {
+            flex: 1;
+        }
+
+        .groove-title {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--disco-yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        .groove-description {
+            font-size: 1rem;
+            color: var(--white);
+            line-height: 1.5;
+        }
+
+        /* Partnerships Section */
+        .partnerships-section {
+            position: relative;
+            z-index: 10;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--disco-blue) 0%, var(--disco-purple) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .partnerships-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .partnerships-content {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 30px var(--glow);
+            font-size: 1.5rem;
+            font-weight: 700;
+            animation: fade-in 1s ease-in-out;
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Revised Party Section (Join the Groove) */
+        .party-section {
+            position: relative;
+            z-index: 10;
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .party-grid {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .party-card {
+            background: linear-gradient(45deg, var(--disco-red), var(--disco-yellow));
+            padding: 1.5rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px var(--glow);
+        }
+
+        .party-card:hover {
+            transform: rotate(5deg) scale(1.1);
+            box-shadow: 0 0 40px var(--disco-pink);
+        }
+
+        .party-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 10;
+            padding: 3rem 2rem;
+            background: var(--black);
+            text-align: center;
+            color: var(--white);
+            border-top: 4px solid var(--glow);
+        }
+
+        .footer-content p {
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 0;
+            }
+
+            .video-pair {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .video-container {
+                width: 100%;
+                height: 500px;
+            }
+
+            .groove, .partnerships-section, .party-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .cta-container {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .groove-list {
+                gap: 1.5rem;
+            }
+
+            .party-grid {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: 2rem;
+            }
+
+            .header-ca {
+                font-size: 1rem;
+            }
+
+            .video-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="disco-floor"></div>
+    <div class="disco-lights">
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+        <div class="light-beam"></div>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <span class="header-title">$SANTWERK</span>
+            <span class="header-ca">CA: SOON</span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>$SANTWERK</h1>
+            <div class="cta-container">
+                <a href="#" class="btn btn-primary">
+                    <span>Grab $SANTWERK</span>
+                    <i class="fas fa-music"></i>
+                </a>
+                <a href="#partnerships" class="btn btn-secondary">
+                    <span>Dive In</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="video-pair">
+        <div class="video-container">
+            <video autoplay loop playsinline poster="banner-poster.jpg">
+                <source src="1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="video-container">
+            <video autoplay loop muted playsinline poster="banner-poster.jpg">
+                <source src="2.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <section class="groove" id="groove">
+        <div class="section-header">
+            <h2 class="section-title">Disco Stats</h2>
+            <p class="section-subtitle">Tokenomics</p>
+        </div>
+        <div class="groove-list">
+            <div class="groove-item">
+                <i class="fas fa-rocket groove-icon"></i>
+                <div class="groove-info">
+                    <h3 class="groove-title">Fair Launch</h3>
+                    <p class="groove-description">No pre-mined beats! Pure community vibe from the start!</p>
+                </div>
+            </div>
+            <div class="groove-item">
+                <i class="fas fa-gem groove-icon"></i>
+                <div class="groove-info">
+                    <h3 class="groove-title">1B Tokens</h3>
+                    <p class="groove-description">Fixed supply with burning grooves. Each token a dance hit!</p>
+                </div>
+            </div>
+            <div class="groove-item">
+                <i class="fas fa-recycle groove-icon"></i>
+                <div class="groove-info">
+                    <h3 class="groove-title">Beat Buybacks</h3>
+                    <p class="groove-description">Fees pump back into buys. Santa's elves keeping the party going!</p>
+                </div>
+            </div>
+            <div class="groove-item">
+                <i class="fas fa-bolt groove-icon"></i>
+                <div class="groove-info">
+                    <h3 class="groove-title">Solana Blitz</h3>
+                    <p class="groove-description">Faster than a disco spin! Low fees, high energy!</p>
+                </div>
+            </div>
+            <div class="groove-item">
+                <i class="fas fa-music groove-icon"></i>
+                <div class="groove-info">
+                    <h3 class="groove-title">Disco Fusion</h3>
+                    <p class="groove-description">Santa + memes = ultimate party! Unstoppable Solana fun!</p>
+                </div>
+            </div>
+            <div class="groove-item">
+                <i class="fas fa-lock groove-icon"></i>
+                <div class="groove-info">
+                    <h3 class="groove-title">Locked LP</h3>
+                    <p class="groove-description">Liquidity sealed like a disco vault! Eternal party mode!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="partnerships-section" id="partnerships">
+        <div class="partnerships-container">
+            <div class="section-header">
+                <h2 class="section-title">Partnerships</h2>
+            </div>
+            <div class="partnerships-content">
+                Coming Soon!
+            </div>
+        </div>
+    </section>
+
+    <section class="party-section" id="party">
+        <div class="section-header">
+            <h2 class="section-title">Join the Groove</h2>
+            <p class="section-subtitle">Connect with the disco squad</p>
+        </div>
+        <div class="party-grid">
+            <a href="#" class="party-card">
+                <span class="party-icon"><i class="fas fa-file-contract"></i></span>
+                Contract - Coming Soon
+            </a>
+            <a href="#" class="party-card">
+                <span class="party-icon"><i class="fab fa-telegram-plane"></i></span>
+                Telegram - Coming Soon
+            </a>
+            <a href="#" class="party-card">
+                <span class="party-icon"><i class="fab fa-x-twitter"></i></span>
+                X - Coming Soon
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 $SANTWERK. Disco Santa Meme on Solana.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.875rem;">Dance wisely. DYOR. Not advice. 🪩⚡</p>
+        </div>
+    </footer>
+</body>
+</html>
