@@ -411,6 +411,55 @@
         .footer-content p {
             font-weight: 600;
         }
+        /* Tap Overlay for Audio Start */
+        .tap-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            color: var(--white);
+            text-align: center;
+            cursor: pointer;
+            animation: pulse-overlay 1s ease-in-out infinite;
+            transition: opacity 0.3s ease;
+        }
+        .tap-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        @keyframes pulse-overlay {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+        .tap-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--glow);
+            text-shadow: 0 0 20px var(--glow);
+            margin-bottom: 1rem;
+            animation: subtle-hue 2s linear infinite;
+        }
+        .tap-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 80%;
+        }
+        .tap-icon {
+            font-size: 4rem;
+            color: var(--disco-pink);
+            animation: bounce 1s ease-in-out infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
         /* Mobile Responsive */
         @media (max-width: 768px) {
             header {
@@ -501,6 +550,12 @@
             .footer-content p {
                 font-size: 0.9rem;
             }
+            .tap-subtitle {
+                font-size: 1.2rem;
+            }
+            .tap-icon {
+                font-size: 3rem;
+            }
         }
         @media (max-width: 480px) {
             .header-title {
@@ -531,12 +586,21 @@
                 font-size: 0.95rem;
                 padding: 1rem 1.5rem;
             }
+            .tap-title {
+                font-size: clamp(2rem, 10vw, 4rem);
+            }
         }
     </style>
 </head>
 <body>
     <!-- mp3 -->
     <audio id="bg-music" src="main.mp3" loop preload="auto"></audio>
+    <!-- Tap Overlay -->
+    <div class="tap-overlay" id="tapOverlay">
+        <i class="fas fa-hand-pointer tap-icon"></i>
+        <h2 class="tap-title">Tap to Groove!</h2>
+        <p class="tap-subtitle">Unleash the disco beats and join the $SANTWERK party</p>
+    </div>
     <div class="disco-floor"></div>
     <div class="disco-lights">
         <div class="light-beam"></div>
@@ -551,14 +615,14 @@
     <header>
         <div class="header-content">
             <span class="header-title">$SANTWERK</span>
-            <span class="header-ca">CA: SOON</span>
+            <span class="header-ca">CA: 2CrtFMSZYUW4STPLpQMPLVNBFQyN9dtQNWLDqR2fpump</span>
         </div>
     </header>
     <section class="hero">
         <div class="hero-content">
             <h1>$SANTWERK</h1>
             <div class="cta-container">
-                <a href="#" class="btn btn-primary" onclick="playMusic()">
+                <a href="#" class="btn btn-primary">
                     <span>Grab $SANTWERK</span>
                     <i class="fas fa-music"></i>
                 </a>
@@ -666,26 +730,44 @@
         document.addEventListener('DOMContentLoaded', function() {
             const videos = document.querySelectorAll('video');
             videos.forEach(video => {
-                video.play().catch(e => console.log('Autoplay blocked:', e));
+                video.play().catch(e => console.log('Video autoplay blocked:', e));
             });
-        });
 
-        function playMusic() {
             const audio = document.getElementById('bg-music');
-            audio.play().catch(e => {
-                console.log('Audio playback blocked:', e);
-                // Optionally, show a message to the user
-                alert('Click the music button to start the disco beats! (Browser autoplay restrictions)');
-            });
-        }
+            const overlay = document.getElementById('tapOverlay');
+            let hasInteracted = false;
 
-        // Optional: Play music on any user interaction if not already playing
-        document.addEventListener('click', function() {
-            const audio = document.getElementById('bg-music');
-            if (audio.paused) {
-                playMusic();
+            function startMusic() {
+                if (!hasInteracted) {
+                    audio.play().then(() => {
+                        console.log('Disco beats started!');
+                        hasInteracted = true;
+                        overlay.classList.add('hidden');
+                        setTimeout(() => overlay.remove(), 300); // Clean up after fade
+                    }).catch(e => {
+                        console.log('Audio playback failed:', e);
+                        // Fallback: Hide overlay anyway, retry on next interaction
+                        overlay.classList.add('hidden');
+                        setTimeout(() => overlay.remove(), 300);
+                    });
+                }
             }
-        }, { once: true });
+
+            // Trigger on overlay tap/click
+            overlay.addEventListener('click', startMusic);
+            overlay.addEventListener('touchstart', startMusic, { passive: true });
+
+            // Also on any other interaction (e.g., scroll, keypress) for seamless feel
+            ['click', 'touchstart', 'keydown', 'scroll'].forEach(eventType => {
+                document.addEventListener(eventType, function handler() {
+                    if (!hasInteracted) startMusic();
+                    if (hasInteracted) document.removeEventListener(eventType, handler);
+                }, { once: true, passive: true });
+            });
+
+            // Handle loop/end
+            audio.addEventListener('ended', () => audio.play());
+        });
     </script>
 </body>
 </html>
