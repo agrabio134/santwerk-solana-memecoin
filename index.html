@@ -535,6 +535,8 @@
     </style>
 </head>
 <body>
+    <!-- mp3 -->
+    <audio id="bg-music" src="main.mp3" loop preload="auto"></audio>
     <div class="disco-floor"></div>
     <div class="disco-lights">
         <div class="light-beam"></div>
@@ -556,7 +558,7 @@
         <div class="hero-content">
             <h1>$SANTWERK</h1>
             <div class="cta-container">
-                <a href="#" class="btn btn-primary">
+                <a href="#" class="btn btn-primary" onclick="playMusic()">
                     <span>Grab $SANTWERK</span>
                     <i class="fas fa-music"></i>
                 </a>
@@ -568,7 +570,7 @@
     </section>
     <div class="video-pair">
         <div class="video-container">
-            <video autoplay loop  playsinline preload="auto" poster="banner-poster.jpg">
+            <video autoplay loop muted playsinline preload="auto" poster="banner-poster.jpg">
                 <source src="main.mp4" type="video/mp4">
                 Your browser doesn't support video. <a href="main.mp4">Download it here</a>.
             </video>
@@ -667,6 +669,23 @@
                 video.play().catch(e => console.log('Autoplay blocked:', e));
             });
         });
+
+        function playMusic() {
+            const audio = document.getElementById('bg-music');
+            audio.play().catch(e => {
+                console.log('Audio playback blocked:', e);
+                // Optionally, show a message to the user
+                alert('Click the music button to start the disco beats! (Browser autoplay restrictions)');
+            });
+        }
+
+        // Optional: Play music on any user interaction if not already playing
+        document.addEventListener('click', function() {
+            const audio = document.getElementById('bg-music');
+            if (audio.paused) {
+                playMusic();
+            }
+        }, { once: true });
     </script>
 </body>
 </html>
