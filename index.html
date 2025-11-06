@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="$SANTWERK - The ultimate disco Santa meme coin on Solana. Groove to the beat, ho-ho-disco!">
     <title>$SANTWERK - Disco Christmas Vibes</title>
     <link rel="icon" href="logo.png" type="image/png">
@@ -13,6 +13,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
@@ -34,15 +35,24 @@
             overflow-x: hidden;
             line-height: 1.6;
             position: relative;
-            animation: disco-flicker 1s infinite alternate;
+            touch-action: pan-y;
+            animation: body-flicker 0.5s infinite, screen-shake 0.5s infinite;
         }
 
-        @keyframes disco-flicker {
-            0% { filter: brightness(1) hue-rotate(0deg); }
-            100% { filter: brightness(1.1) hue-rotate(180deg); }
+        @keyframes body-flicker {
+            0% { filter: brightness(1) saturate(1); }
+            50% { filter: brightness(1.12) saturate(1.3); }
+            100% { filter: brightness(1) saturate(1); }
         }
 
-        /* Disco Floor Background */
+        @keyframes screen-shake {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(3px, -3px) rotate(0.8deg); }
+            50% { transform: translate(-3px, 3px) rotate(-0.8deg); }
+            75% { transform: translate(3px, 2px) rotate(0.8deg); }
+        }
+
+        /* Disco Floor Background - 120 BPM Pulse */
         .disco-floor {
             position: fixed;
             top: 0;
@@ -50,22 +60,33 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background: repeating-conic-gradient(
-                var(--disco-red) 0% 5%, var(--disco-green) 5% 10%,
-                var(--disco-blue) 10% 15%, var(--disco-yellow) 15% 20%,
-                var(--disco-purple) 20% 25%, var(--disco-pink) 25% 30%,
-                var(--disco-red) 30% 35%
-            );
-            animation: spin-floor 20s linear infinite;
+            background: linear-gradient(135deg, 
+                var(--disco-red) 0%, 
+                var(--disco-purple) 25%, 
+                var(--disco-blue) 50%, 
+                var(--disco-green) 75%, 
+                var(--disco-pink) 100%);
             opacity: 0.2;
+            animation: disco-bg-pulse 0.5s ease-in-out infinite, disco-color-shift 4s linear infinite;
         }
 
-        @keyframes spin-floor {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes disco-bg-pulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.2;
+            }
+            50% { 
+                transform: scale(1.02);
+                opacity: 0.3;
+            }
         }
 
-        /* Intense Disco Lights */
+        @keyframes disco-color-shift {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* Disco Lights - 120 BPM Movement */
         .disco-lights {
             position: fixed;
             top: 0;
@@ -75,7 +96,7 @@
             z-index: 1;
             pointer-events: none;
             overflow: hidden;
-            animation: rotate-lights 30s linear infinite;
+            animation: rotate-lights 5s linear infinite;
         }
 
         @keyframes rotate-lights {
@@ -85,33 +106,41 @@
 
         .light-beam {
             position: absolute;
-            width: 200px;
-            height: 200px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            animation: beam-flash 2s ease-in-out infinite;
-            box-shadow: 0 0 300px 100px currentColor;
-            opacity: 0.8;
+            animation: beam-flash-bpm 0.5s ease-in-out infinite;
+            box-shadow: 0 0 150px 60px currentColor;
+            opacity: 0.5;
         }
 
-        .light-beam:nth-child(1) { top: 5%; left: 10%; background: var(--disco-red); animation-delay: 0.1s; }
-        .light-beam:nth-child(2) { top: 15%; left: 30%; background: var(--disco-green); animation-delay: 0.2s; }
-        .light-beam:nth-child(3) { top: 25%; left: 50%; background: var(--disco-blue); animation-delay: 0.3s; }
-        .light-beam:nth-child(4) { top: 35%; left: 70%; background: var(--disco-yellow); animation-delay: 0.4s; }
-        .light-beam:nth-child(5) { top: 45%; left: 90%; background: var(--disco-purple); animation-delay: 0.5s; }
-        .light-beam:nth-child(6) { top: 55%; left: 20%; background: var(--disco-pink); animation-delay: 0.6s; }
-        .light-beam:nth-child(7) { top: 65%; left: 40%; background: var(--disco-red); animation-delay: 0.7s; }
-        .light-beam:nth-child(8) { top: 75%; left: 60%; background: var(--disco-green); animation-delay: 0.8s; }
-        .light-beam:nth-child(9) { top: 85%; left: 80%; background: var(--disco-blue); animation-delay: 0.9s; }
-        .light-beam:nth-child(10) { top: 95%; left: 0%; background: var(--disco-yellow); animation-delay: 1s; }
-        .light-beam:nth-child(11) { top: 10%; left: 50%; background: var(--disco-pink); animation-delay: 0.3s; }
-        .light-beam:nth-child(12) { top: 20%; left: 80%; background: var(--disco-purple); animation-delay: 0.5s; }
-        .light-beam:nth-child(13) { top: 30%; left: 20%; background: var(--disco-green); animation-delay: 0.7s; }
-        .light-beam:nth-child(14) { top: 40%; left: 60%; background: var(--disco-blue); animation-delay: 0.9s; }
-        .light-beam:nth-child(15) { top: 50%; left: 40%; background: var(--disco-yellow); animation-delay: 1.1s; }
+        @media (max-width: 768px) {
+            .light-beam {
+                width: 80px;
+                height: 80px;
+                box-shadow: 0 0 100px 40px currentColor;
+                opacity: 0.4;
+            }
+        }
 
-        @keyframes beam-flash {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.3); }
+        .light-beam:nth-child(1) { top: 10%; left: 10%; background: var(--disco-red); animation-delay: 0s; }
+        .light-beam:nth-child(2) { top: 20%; left: 40%; background: var(--disco-green); animation-delay: 0.0625s; }
+        .light-beam:nth-child(3) { top: 30%; left: 70%; background: var(--disco-blue); animation-delay: 0.125s; }
+        .light-beam:nth-child(4) { top: 60%; left: 20%; background: var(--disco-purple); animation-delay: 0.1875s; }
+        .light-beam:nth-child(5) { top: 70%; left: 80%; background: var(--disco-pink); animation-delay: 0.25s; }
+        .light-beam:nth-child(6) { top: 40%; left: 50%; background: var(--disco-yellow); animation-delay: 0.3125s; }
+        .light-beam:nth-child(7) { top: 80%; left: 30%; background: var(--disco-red); animation-delay: 0.375s; }
+        .light-beam:nth-child(8) { top: 50%; left: 90%; background: var(--disco-green); animation-delay: 0.4375s; }
+
+        @keyframes beam-flash-bpm {
+            0%, 100% { 
+                opacity: 0.2; 
+                transform: scale(1); 
+            }
+            50% { 
+                opacity: 0.8; 
+                transform: scale(1.3); 
+            }
         }
 
         /* Header */
@@ -172,10 +201,15 @@
             color: var(--black);
             text-shadow: 0 0 20px var(--glow), 0 0 40px var(--disco-pink);
             margin-bottom: 1rem;
-            animation: hue-shift 3s linear infinite;
         }
 
-        @keyframes hue-shift {
+        @media (prefers-reduced-motion: no-preference) {
+            h1 {
+                animation: subtle-hue 5s linear infinite;
+            }
+        }
+
+        @keyframes subtle-hue {
             0% { filter: hue-rotate(0deg); }
             100% { filter: hue-rotate(360deg); }
         }
@@ -240,19 +274,6 @@
             overflow: hidden;
             border: 4px solid var(--glow);
             box-shadow: 0 0 40px var(--glow);
-            animation: pulse-media 2s infinite;
-        }
-
-        @media (max-width: 768px) {
-            .video-container {
-                width: 100%;
-                height: 500px;
-            }
-        }
-
-        @keyframes pulse-media {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
         }
 
         .video-container video {
@@ -262,7 +283,7 @@
             display: block;
         }
 
-        /* Revised Groove Section (Disco Stats) */
+        /* Groove Section (Disco Stats) */
         .groove {
             position: relative;
             z-index: 10;
@@ -284,7 +305,12 @@
             font-size: clamp(3rem, 5vw, 4rem);
             color: var(--glow);
             text-shadow: 0 0 15px var(--disco-red), 0 0 30px var(--disco-pink);
-            animation: hue-shift 5s linear infinite;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .section-title {
+                animation: subtle-hue 5s linear infinite;
+            }
         }
 
         .section-subtitle {
@@ -310,12 +336,6 @@
             align-items: center;
             gap: 1.5rem;
             transition: transform 0.3s, box-shadow 0.3s;
-            animation: item-pulse 2s infinite alternate;
-        }
-
-        @keyframes item-pulse {
-            0% { box-shadow: 0 0 10px var(--disco-green); }
-            100% { box-shadow: 0 0 20px var(--disco-pink); }
         }
 
         .groove-item:hover {
@@ -326,7 +346,12 @@
         .groove-icon {
             font-size: 3rem;
             color: var(--glow);
-            animation: spin-icon 3s linear infinite;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .groove-icon {
+                animation: spin-icon 3s linear infinite;
+            }
         }
 
         @keyframes spin-icon {
@@ -373,15 +398,9 @@
             box-shadow: 0 0 30px var(--glow);
             font-size: 1.5rem;
             font-weight: 700;
-            animation: fade-in 1s ease-in-out;
         }
 
-        @keyframes fade-in {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Revised Party Section (Join the Groove) */
+        /* Party Section (Join the Groove) */
         .party-section {
             position: relative;
             z-index: 10;
@@ -438,18 +457,43 @@
             font-weight: 600;
         }
 
-        /* Responsive */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             header {
-                padding: 1rem;
+                padding: 0.75rem 1rem;
+            }
+
+            .header-title {
+                font-size: 1.8rem;
+            }
+
+            .header-ca {
+                font-size: 0.9rem;
             }
 
             .hero {
-                padding: 6rem 1.5rem 0;
+                padding: 6rem 1rem 0;
+            }
+
+            h1 {
+                font-size: clamp(2.5rem, 12vw, 4rem);
+            }
+
+            .cta-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+                font-size: 1rem;
+                padding: 0.9rem 2rem;
             }
 
             .video-pair {
                 flex-direction: column;
+                padding: 1.5rem 1rem;
                 gap: 1.5rem;
             }
 
@@ -458,40 +502,113 @@
                 height: 500px;
             }
 
-            .groove, .partnerships-section, .party-section {
-                padding: 3rem 1.5rem;
+            .groove {
+                padding: 2.5rem 1.5rem;
+                margin: 1rem;
+                border-radius: 20px;
             }
 
-            .cta-container {
-                flex-direction: column;
+            .section-title {
+                font-size: clamp(2rem, 8vw, 3rem);
             }
 
-            .btn {
-                width: 100%;
-                text-align: center;
+            .section-subtitle {
+                font-size: 1.1rem;
             }
 
             .groove-list {
                 gap: 1.5rem;
             }
 
+            .groove-item {
+                padding: 1.2rem;
+                gap: 1rem;
+            }
+
+            .groove-icon {
+                font-size: 2.2rem;
+            }
+
+            .groove-title {
+                font-size: 1.2rem;
+            }
+
+            .groove-description {
+                font-size: 0.9rem;
+            }
+
+            .partnerships-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .partnerships-content {
+                padding: 1.5rem;
+                font-size: 1.2rem;
+            }
+
+            .party-section {
+                padding: 3rem 1.5rem;
+            }
+
             .party-grid {
                 flex-direction: column;
                 gap: 1.5rem;
+            }
+
+            .party-card {
+                font-size: 1rem;
+                padding: 1.2rem 2rem;
+            }
+
+            .party-icon {
+                font-size: 1.3rem;
+            }
+
+            footer {
+                padding: 2rem 1.5rem;
+            }
+
+            .footer-content p {
+                font-size: 0.9rem;
             }
         }
 
         @media (max-width: 480px) {
             .header-title {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
 
             .header-ca {
-                font-size: 1rem;
+                font-size: 0.8rem;
             }
 
             .video-container {
                 height: 400px;
+            }
+
+            .groove-icon {
+                font-size: 2rem;
+            }
+
+            .groove-title {
+                font-size: 1.1rem;
+            }
+
+            .groove-description {
+                font-size: 0.85rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .partnerships-content {
+                font-size: 1.1rem;
+            }
+
+            .party-card {
+                font-size: 0.95rem;
+                padding: 1rem 1.5rem;
             }
         }
     </style>
@@ -499,13 +616,6 @@
 <body>
     <div class="disco-floor"></div>
     <div class="disco-lights">
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
         <div class="light-beam"></div>
         <div class="light-beam"></div>
         <div class="light-beam"></div>
@@ -540,7 +650,7 @@
 
     <div class="video-pair">
         <div class="video-container">
-            <video autoplay loop playsinline poster="banner-poster.jpg">
+            <video autoplay loop  playsinline poster="banner-poster.jpg">
                 <source src="1.mp4" type="video/mp4">
             </video>
         </div>
